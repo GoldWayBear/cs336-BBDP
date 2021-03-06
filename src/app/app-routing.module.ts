@@ -2,23 +2,55 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BarDetailsComponent } from './bar-details/bar-details.component';
-import { InsightComponent } from './insight/insight.component';
+import { DrinkerComponent } from './drinker/drinker.component';
+import { BarComponent } from './bar/bar.component';
+import { BeerComponent } from './beer/beer.component';
+import { QueryComponent } from './query/query.component';
+import { ModificationComponent } from './modification/modification.component';
 
 const routes: Routes = [
-  {
+    {
     path: '',
     pathMatch: 'full',
-    component: WelcomeComponent
+    redirectTo:'drinker'
   },
   {
-    path: 'bars/:bar',
+    path: 'static',
     pathMatch: 'full',
-    component: BarDetailsComponent
+    redirectTo: 'drinker'
+  },
+
+  {
+    path:'welcome',
+    pathMatch:'full',
+    component:WelcomeComponent
+  },
+
+
+  {
+    path: 'drinker',
+    pathMatch: 'full',
+    component: DrinkerComponent
   },
   {
-      path: 'insight',
+    path: 'bar',
+    pathMatch: 'full',
+    component: BarComponent
+  },
+  {
+      path: 'beer',
       pathMatch: 'full',
-      component: InsightComponent
+      component: BeerComponent
+  },
+/*  {
+      path: 'query',
+      pathMatch: 'full',
+      component: QueryComponent
+  },*/
+  {
+      path: 'modification',
+      pathMatch: 'full',
+      component: ModificationComponent
   }
 ];
 
