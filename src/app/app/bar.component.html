@@ -1,0 +1,114 @@
+<div>
+    <!--<label>Bar:  </label> -->
+    <font size="3">Bar:  </font>
+    <select (change)="filterBar($event.target.value)">
+        <option value="0">--Please Select a Bar--</option>
+        <option *ngFor="let bar of bars" value={{bar.name}}>
+            {{bar.name}}
+        </option>
+    </select>
+</div>
+
+<div style="max-width: 1200px">
+  <font size="3">Top Drinkers Chart:  </font>
+  <canvas
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="drinkerSpendingsData"
+      [labels]="drinkerSpendingsLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      [colors]="drinkerSpendingsColors"
+      (chartClick)="onDrinkerSpendingsChartClick($event)">
+  </canvas>
+</div>
+
+<div style="max-width: 1200px">
+  <font size="3">Beer Popularity Chart:  </font>
+  <canvas
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="beerOrdersData"
+      [labels]="beerOrdersLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      [colors]="beerOrdersColors"
+      (chartClick)="onBeerOrdersChartClick($event)">
+  </canvas>
+</div>
+
+<div style="max-width: 1200px">
+  <font size="3">Manufacture Beer Sales Chart:  </font>
+  <canvas
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="manfOrdersData"
+      [labels]="manfOrdersLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      [colors]="manfOrdersColors"
+      (chartClick)="onManfOrdersChartClick($event)">
+  </canvas>
+</div>
+
+<br><br>
+<div>
+  <font size="4">Add a new transaction:  </font>
+  <button (click)="newBill()">New Bill</button><br>
+  <font size="3">Bar: {{selectedBar}}</font><br>
+  <font size="3">Drinker: </font>
+  <select (change)="filterDinker($event.target.value)">
+      <option value="0">--Please Select a Drinker--</option>
+      <option *ngFor="let drinker of drinkers" value={{drinker.name}}>
+          {{drinker.name}}
+      </option>
+  </select><br>
+  <font size="3">Time: </font>
+  <input type="datetime-local" id="bill_time" name="bill_time"
+    value="2018-11-18T19:30"
+    min="2016-01-01T00:00" max="2018-12-31T00:00"><br>
+  <font size="3">Total: $</font>
+  <input type="number" id="total" size=30 min="0.0"><br>
+  <font size="3">Tips:  $</font>
+  <input type="number" id="tips" size=30 min="0.0"><br>
+  <br>
+  <div>
+    <font size="3">Item Type: </font>
+    <select (change)="filterItemType($event.target.value)">
+        <option value="0">--Please Select an Item Type--</option>
+        <option value="food">Food</option>
+        <option value="beer">Beer</option>
+        <option value="soft drink">Soft Drink</option>
+    </select>
+    <font size="3">Item Name: </font>
+    <select (change)="filterItemName($event.target.value)">
+      <option value="0">--Please Select an Item--</option>
+      <option *ngFor="let item of items" value={{item.name}}>
+          {{item.name}}
+      </option>
+    </select>
+    <font size="3">Quantity: </font>
+    <input type="number" id="quantity" name="quantity"
+       min="1" max="10" value="1">
+    <button (click)="addItemToBilldetail()">Add</button>
+    <br>
+    <p-table [value]="billdetails" [scrollable]="true" scrollHeight="300px">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Item Type</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-billdetail>
+            <tr>
+                <td>{{billdetail.itemtype}}</td>
+                <td>{{billdetail.itemname}}</td>
+                <td>{{billdetail.quantities}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <br>
+    <button (click)="addBill()">Add Bill</button>
+  </div>
+</div>
