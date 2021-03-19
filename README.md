@@ -11,9 +11,5 @@ First get Node.js
 Next, install the Angular CLI on a global scope. To do this, execute the following:
 npm i -g @angular/cli
 This will now let you use the ng command from the terminal.
-# Using Bootstrap
-# Using Angular
-## Development server
 
-# BBDPClient
 
